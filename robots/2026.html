@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2026 REBUILT Robot Book | FRC 7130 Future Shock</title>
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="icon" href="../Future Shock.png">
+</head>
+<body>
+<header class="site">
+  <div class="nav-wrap">
+    <a class="brand" href="../index.html"><img src="../Future Shock.png" alt="Future Shock logo">
+      <span>FRC 7130<span class="sub">Future Shock</span></span></a>
+    <nav class="main">
+      <a href="../index.html"><span class="lang en">Home</span><span class="lang zh">首頁</span></a>
+      <a href="../about.html"><span class="lang en">About</span><span class="lang zh">關於我們</span></a>
+      <a href="../history.html"><span class="lang en">History</span><span class="lang zh">隊史</span></a>
+      <a href="../impact.html"><span class="lang en">Impact</span><span class="lang zh">社會影響</span></a>
+      <a href="../robots.html"><span class="lang en">Robots</span><span class="lang zh">機器人</span></a>
+      <a href="../sponsors.html"><span class="lang en">Sponsorship</span><span class="lang zh">贊助</span></a>
+      <a href="../contact.html"><span class="lang en">Contact</span><span class="lang zh">聯絡我們</span></a>
+    </nav>
+    <button id="langBtn" type="button">EN / 中文</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="crumb"><a href="../robots.html"><span class="lang en">Robots</span><span class="lang zh">機器人</span></a> → 2026 REBUILT</div>
+  <h2 class="section"><span class="lang en">2026 Robot Book — REBUILT Season</span><span class="lang zh">2026 機器人手冊——REBUILT 賽季</span></h2>
+  <p><span class="lang en">This is the digital record of how our 2026 robot came to be — from the first read of the game manual to the Final Bot. It documents not just the machine, but the brainstorming, the testing, the failures, and the engineering decisions behind it.</span>
+  <span class="lang zh">這是我們 2026 年機器人誕生過程的數位紀錄——從第一次研讀比賽手冊到最終機器人。記錄的不只是機器本身，更是腦力激盪、測試、失敗與每個工程決策。</span></p>
+  <img class="banner" src="../assets/img/robot2026_team.jpg" alt="The 2026 team with the robot" loading="lazy" style="max-height:380px">
+
+  <h3 style="margin-top:2rem"><span class="lang en">⚙️ The Game: REBUILT</span><span class="lang zh">⚙️ 賽題：REBUILT</span></h3>
+  <div class="card">
+    <img class="ph-full" src="../assets/img/robot2026_field.jpg" alt="The 2026 robot scoring FUEL on the practice field" loading="lazy">
+    <p><span class="lang en">Two alliances compete to collect <strong>FUEL</strong> (15 cm foam balls) and shoot it into the <strong>HUB</strong>, which cycles between active and inactive states every 25 seconds. Matches run 160 seconds: a 20-second autonomous period, teleop, and a 30-second endgame where robots climb the <strong>TOWER</strong> (Level 1 = 10 pts, Level 2 = 20 pts, Level 3 = 30 pts). Field obstacles include the BUMP (raised obstacle) and the TRENCH (low arch).</span>
+    <span class="lang zh">兩個聯盟競相收集 <strong>FUEL</strong>（15 公分泡棉球）並射入 <strong>HUB</strong>，HUB 每 25 秒在啟用／停用狀態間切換。比賽共 160 秒：20 秒自動階段、手動操作階段，以及 30 秒終局——機器人可攀爬 <strong>TOWER</strong>（第一層 10 分、第二層 20 分、第三層 30 分）。場上障礙包括 BUMP（隆起障礙）與 TRENCH（低矮拱門）。</span></p>
+  </div>
+
+  <h3 style="margin-top:2rem"><span class="lang en">🧠 Stage 1 — Kickoff &amp; Strategy</span><span class="lang zh">🧠 第一階段——開賽與策略</span></h3>
+  <div class="card">
+    <img class="ph-full" src="../assets/img/robot2026_kickoff.jpg" alt="Team members studying the game manual at kickoff" loading="lazy">
+    <p><span class="lang en">Our six-step kickoff process, adapted from Teams 581, 2791, and 4481:</span>
+    <span class="lang zh">參考 581、2791、4481 隊方法改良的六步驟開賽流程：</span></p>
+    <ul class="clean">
+      <li><span class="lang en"><strong>1. Read the game manual</strong> — five mixed groups (Design + Mechanics + Programming) studied field geometry, scoring mechanics, technical compliance, and game phases.</span><span class="lang zh"><strong>1. 研讀比賽手冊</strong>——五個跨組小組（設計＋機構＋程式）研究場地幾何、得分機制、技術規範與比賽階段。</span></li>
+      <li><span class="lang en"><strong>2. List robot actions</strong> — every possible action, in four categories: mobility, robot–field, robot–game piece, robot–robot interaction.</span><span class="lang zh"><strong>2. 列出機器人行動清單</strong>——分為移動性、機器人－場地、機器人－遊戲物件、機器人－機器人互動四大類。</span></li>
+      <li><span class="lang en"><strong>3. Build robot archetypes</strong> — simulated robots with different capability sets.</span><span class="lang zh"><strong>3. 建立機器人原型模型</strong>——模擬不同能力組合的機器人。</span></li>
+      <li><span class="lang en"><strong>4. Game simulation</strong> — timestamp-based scoring simulations comparing alliance compositions and ranking points.</span><span class="lang zh"><strong>4. 比賽模擬</strong>——以時間戳記模擬得分，比較聯盟組合與排名點數。</span></li>
+      <li><span class="lang en"><strong>5. High-level strategy analysis</strong> — BUMP over TRENCH (more flexibility); TOWER focus on reliable "L1 + AUTO L1"; FUEL cycle math showed a 7+ FUEL/sec shooter–intake chain could contribute two-thirds of the Supercharged RP alone (240 FUEL in 110 active seconds).</span><span class="lang zh"><strong>5. 高階策略分析</strong>——優先跨越 BUMP 而非 TRENCH（更具彈性）；TOWER 專注於穩定的「L1＋自動 L1」；FUEL 循環計算顯示，射球－進球鏈達 7 顆/秒即可獨力貢獻 Supercharged RP 的三分之二（110 秒內 240 顆）。</span></li>
+      <li><span class="lang en"><strong>6. Priority list</strong> — every capability sorted into NEED / WANT / NON-ESSENTIAL to guide design and testing.</span><span class="lang zh"><strong>6. 優先順序清單</strong>——所有能力分為「必要／想要／非必要」，作為設計與測試的依據。</span></li>
+    </ul>
+  </div>
+
+  <h3 style="margin-top:2rem"><span class="lang en">🔬 Stage 2 — Prototype</span><span class="lang zh">🔬 第二階段——原型</span></h3>
+  <div class="card">
+    <p><span class="lang en">We adopted a <strong>Prototype-First</strong> strategy to validate physical variables CAD cannot capture — material compression, friction — before committing to a design. Four core mechanisms were prototyped: <strong>Intake</strong> (collect FUEL), <strong>Indexer</strong> (transport it), <strong>Shooter</strong> (score it), and <strong>Climber</strong> (climb the TOWER).</span>
+    <span class="lang zh">我們採取「<strong>原型優先</strong>」策略，在定案前驗證 CAD 無法模擬的物理變數——材料壓縮量、摩擦力。共製作四大核心機構原型：<strong>Intake</strong>（收集 FUEL）、<strong>Indexer</strong>（輸送）、<strong>Shooter</strong>（射球得分）、<strong>Climber</strong>（攀爬 TOWER）。</span></p>
+    <p><span class="lang en">Example — intake testing: linear testing fixed one variable at a time. A compression of 0.5 in balanced intake speed against acquisition consistency. Stealth Wheels vs. PVC pipe rollers proved nearly identical (avg 9.79 vs 9.81 FUEL/s measured with Team 4481's Ball Counter) — so we chose PVC, saving our limited Stealth Wheel supply.</span>
+    <span class="lang zh">以 Intake 測試為例：採線性測試法，一次固定一個變數。0.5 英吋壓縮量在進球速度與穩定性間取得最佳平衡。Stealth Wheel 與 PVC 管滾輪表現幾乎相同（以 4481 隊的 Ball Counter 量測，平均 9.79 對 9.81 顆/秒）——因此選用 PVC，保留有限的 Stealth Wheel 庫存。</span></p>
+  </div>
+
+  <h3 style="margin-top:2rem"><span class="lang en">🤖 Stage 3 — Alpha Bot</span><span class="lang zh">🤖 第三階段——Alpha Bot</span></h3>
+  <div class="card">
+    <img class="ph-full" src="../assets/img/robot2026_alpha.jpg" alt="The Alpha Bot during field testing" loading="lazy">
+    <p><span class="lang en">The Alpha Bot unified the best prototypes into one robot, shifting the question from "does this mechanism work?" to <strong>"does the robot work as a system?"</strong> Goals: validate mechanical integration, surface system-level interaction issues, and evaluate structure, weight distribution, and stability.</span>
+    <span class="lang zh">Alpha Bot 將最佳原型整合為一台機器人，把問題從「這個機構能動嗎？」轉變為「<strong>整台機器人能作為一個系統運作嗎？</strong>」目標：驗證機構整合、找出系統層級的交互問題，並評估結構、配重與穩定性。</span></p>
+    <ul class="clean">
+      <li><span class="lang en">Drivetrain: SDS MK5n L2 swerve, 4× Kraken X60 drive + 4× Kraken X44 steer, 16.8 ft/s.</span><span class="lang zh">底盤：SDS MK5n L2 swerve，4 顆 Kraken X60 驅動＋4 顆 Kraken X44 轉向，極速 16.8 ft/s。</span></li>
+      <li><span class="lang en">Intake: 11.8 FUEL/s, 3 at a time — but the fixed design violated the starting-configuration rule, forcing a retractable redesign.</span><span class="lang zh">Intake：11.8 顆/秒、一次處理 3 顆——但固定式設計違反起始尺寸規則，必須改為可收折。</span></li>
+      <li><span class="lang en">Indexer: 10.7 FUEL/s throughput, 20-FUEL storage.</span><span class="lang zh">Indexer：10.7 顆/秒、可儲存 20 顆。</span></li>
+    </ul>
+  </div>
+
+  <h3 style="margin-top:2rem"><span class="lang en">🛠️ Stage 4 — Beta Bot</span><span class="lang zh">🛠️ 第四階段——Beta Bot</span></h3>
+  <div class="card">
+    <img class="ph-full" src="../assets/img/robot2026_beta.jpg" alt="The Beta Bot" loading="lazy">
+    <p><span class="lang en">The Beta Bot turned the integrated prototype into a competition-ready platform, focused on three pillars: <strong>structural durability</strong> (reinforcing impact-prone parts), <strong>consistency</strong> (sustaining &gt;16 FUEL/s firing under varying battery voltage), and <strong>maintenance accessibility</strong> (quick-service repairs between matches). Key upgrades: vertical-stowing intake with friction-wrapped PVC rollers, a 25-ball indexer feeding 16 balls/sec, and a shooter with 10°–35° dynamic angle adjustment via rack-and-pinion and dual-stage flywheels.</span>
+    <span class="lang zh">Beta Bot 把整合原型打造成可上場比賽的平台，聚焦三大支柱：<strong>結構耐久性</strong>（強化易受撞擊部位）、<strong>穩定性</strong>（在電壓變動下維持每秒 16 顆以上的射速）、<strong>維修便利性</strong>（資格賽間隙的快速維修）。主要升級：可垂直收折、滾輪包覆增摩材料的 Intake；可儲 25 顆、每秒供 16 顆的 Indexer；以齒條傳動實現 10°–35° 動態仰角、雙級飛輪的 Shooter。</span></p>
+  </div>
+
+  <h3 style="margin-top:2rem"><span class="lang en">🏆 Stage 5 — Final Bot</span><span class="lang zh">🏆 第五階段——最終機器人</span></h3>
+  <div class="card">
+    <div class="grid c2" style="margin-bottom:1rem">
+      <figure class="shot full"><img src="../assets/img/robot2026_final.jpg" alt="The Final Bot" loading="lazy">
+        <figcaption><span class="lang en">The Final Bot, loaded with FUEL</span><span class="lang zh">裝滿 FUEL 的最終機器人</span></figcaption></figure>
+      <figure class="shot full"><img src="../assets/img/robot2026_final_cad.jpg" alt="Final Bot CAD renders" loading="lazy">
+        <figcaption><span class="lang en">CAD renders of the final design</span><span class="lang zh">最終設計的 CAD 渲染圖</span></figcaption></figure>
+    </div>
+    <table class="data">
+      <thead><tr><th><span class="lang en">Subsystem</span><span class="lang zh">子系統</span></th><th><span class="lang en">Highlights</span><span class="lang zh">重點規格</span></th></tr></thead>
+      <tbody>
+        <tr><td><span class="lang en">Drivetrain</span><span class="lang zh">底盤</span></td><td><span class="lang en">MK5n L2 swerve, 16.8 ft/s; bumper cutouts for frame-to-tower contact; quick-release bumper latches.</span><span class="lang zh">MK5n L2 swerve，16.8 ft/s；防撞框開孔讓車架直接觸塔；快拆式防撞框。</span></td></tr>
+        <tr><td>Intake</td><td><span class="lang en">11.8 FUEL/s, 53-FUEL storage with a dynamic collapsible expansion box triggered by intake movement.</span><span class="lang zh">11.8 顆/秒，53 顆儲量——伸縮式儲球箱隨 Intake 動作自動展開。</span></td></tr>
+        <tr><td>Indexer</td><td><span class="lang en">16 FUEL/s; pivot-style quick-access design secured by just four screws for rapid electronics access.</span><span class="lang zh">16 顆/秒；翻轉式快拆結構僅用四顆螺絲固定，可迅速檢修電路。</span></td></tr>
+        <tr><td>Shooter</td><td><span class="lang en">16 FUEL/s, 3 at a time, stable trajectory from any position; dual-row differential drive; giant 3D-printed rack for 10°–35° elevation.</span><span class="lang zh">16 顆/秒、一次 3 顆、任意位置皆可命中；雙排差速驅動；大型 3D 列印齒條控制 10°–35° 仰角。</span></td></tr>
+        <tr><td>Climber</td><td><span class="lang en">Level 1 climb &amp; descend; double telescope, 1:60 reduction; holds 8.6 s after disable.</span><span class="lang zh">可攀爬至第一層並下降；雙節伸縮、1:60 減速比；斷電後仍可支撐 8.6 秒。</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="margin-top:2rem"><span class="lang en">💻 Programming — The Autonomous Revolution</span><span class="lang zh">💻 程式——自動控制的革新</span></h3>
+  <div class="card">
+    <img class="ph-full" src="../assets/img/robot2026_assembly.jpg" alt="Assembling a swerve module" loading="lazy">
+    <p><span class="lang en">2026 marked our transition from "time-based" movement to a fully reactive, vision-corrected autonomous system. We rebuilt the localization stack on MK5n swerve modules, CTRE's Swerve API (FieldCentricFacingAngle keeps the shooter aimed at the HUB), and 250 Hz odometry with the CTRE time-sync API — a 5× frequency upgrade with dramatically lower drift. Two cameras handle AprilTag localization (placement optimized with Team 6328's visibility utility, calibrated with ChArUco boards), feeding Limelight's MegaTag2 pose estimation. One camera doubles for the auto-climbing system.</span>
+    <span class="lang zh">2026 年我們從「以時間為基準」的移動，全面轉型為具視覺校正、即時反應的自動系統。定位架構建立在 MK5n swerve 模組、CTRE Swerve API（FieldCentricFacingAngle 讓射球機構始終對準 HUB），以及搭配 CTRE 時間同步 API 的 250 Hz 里程計——頻率提升五倍、漂移大幅降低。兩台相機負責 AprilTag 定位（以 6328 隊的可視性工具優化安裝位置、ChArUco 板校正），餵入 Limelight MegaTag2 姿態估測；其中一台兼任自動攀爬系統。</span></p>
+  </div>
+
+  <h3 style="margin-top:2rem"><span class="lang en">🔌 Electrical — Modular by Design</span><span class="lang zh">🔌 電路——模組化設計</span></h3>
+  <div class="card">
+    <ul class="clean">
+      <li><span class="lang en"><strong>Breakpoint design:</strong> high-current connectors at structural junctions let sub-assemblies (intake/shooter) be removed without de-wiring the PDH — rapid swaps in the pit.</span><span class="lang zh"><strong>斷點設計：</strong>結構接點處配置大電流連接器，可在不拆 PDH 配線的情況下整組移除 Intake／Shooter——維修區快速更換。</span></li>
+      <li><span class="lang en"><strong>Standardized assembly sequence:</strong> 10AWG power backbone → 22AWG control wiring → CAN bus daisy-chain → network links, isolating interference step by step.</span><span class="lang zh"><strong>標準化組裝順序：</strong>10AWG 電力骨幹 → 22AWG 控制線 → CAN 匯流排串接 → 網路連線，逐步隔離干擾。</span></li>
+      <li><span class="lang en"><strong>Quadrant allocation ("Frog Layout"):</strong> each quadrant hosts two swerve motors plus assigned subsystems — eliminating wire entanglement and achieving 100% reliable system integration.</span><span class="lang zh"><strong>象限配置（「青蛙布局」）：</strong>每個象限配置兩顆 swerve 馬達與指定子系統——徹底消除線材糾纏，達成 100% 可靠的系統整合。</span></li>
+    </ul>
+    <p><span class="lang en">Season technical outcome: a standalone motor controller, built so secondary mechanisms can be tested with steady adjustable output — no RoboRIO or test code required.</span>
+    <span class="lang zh">賽季技術成果：自製獨立馬達控制器，讓次要機構不需 RoboRIO 或測試程式即可用穩定可調的輸出進行測試。</span></p>
+  </div>
+
+  <h3 style="margin-top:2rem"><span class="lang en">📸 On the Field</span><span class="lang zh">📸 賽場直擊</span></h3>
+  <div class="grid c3">
+    <figure class="shot"><img src="../assets/img/robot2026_bump.jpg" alt="Robot crossing the BUMP" loading="lazy">
+      <figcaption><span class="lang en">Crossing the BUMP — exactly as the strategy demanded</span><span class="lang zh">跨越 BUMP——正如策略所要求</span></figcaption></figure>
+    <figure class="shot"><img src="../assets/img/robot2026_hopper.jpg" alt="Robot with a full hopper of FUEL" loading="lazy">
+      <figcaption><span class="lang en">Hopper loaded with FUEL mid-match</span><span class="lang zh">比賽中滿載 FUEL 的儲球箱</span></figcaption></figure>
+    <figure class="shot"><img src="../assets/img/robot2026_side.jpg" alt="Side view of the 2026 robot" loading="lazy">
+      <figcaption><span class="lang en">The polycarbonate frame, sponsors aboard</span><span class="lang zh">透明聚碳酸酯車身與贊助商標誌</span></figcaption></figure>
+  </div>
+
+  <p class="note" style="margin-top:1.5rem"><span class="lang en">Source: FRC 7130 Future Shock 2026 Robot Book. For the complete document with photos, charts, and CAD renders, contact the team.</span>
+  <span class="lang zh">資料來源：FRC 7130 Future Shock 2026 機器人手冊。完整版（含照片、圖表與 CAD 渲染圖）歡迎與隊伍聯繫索取。</span></p>
+</div>
+
+<footer class="site">
+  <div class="links">
+    <a href="mailto:frc7130@gmail.com">frc7130@gmail.com</a>
+    <a href="https://www.instagram.com/frc7130_future_shock" target="_blank" rel="noopener">Instagram @frc7130_future_shock</a>
+  </div>
+  <div><span class="lang en">FRC Team 7130 Future Shock · Mingdao High School, Taichung, Taiwan</span>
+  <span class="lang zh">FRC 7130 Future Shock · 台中市明道中學</span></div>
+</footer>
+<script src="../assets/main.js"></script>
+</body>
+</html>
